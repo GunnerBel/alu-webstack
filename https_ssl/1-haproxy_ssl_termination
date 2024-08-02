@@ -33,18 +33,18 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-frontend oreste-frontend-http
+frontend bela-frontend-http
         bind *:80
         mode http
 	http-request set-header X-Forwarded-Proto http
-        default_backend oreste-backend
+        default_backend bela-backend
 
-frontend oreste-frontend-https
+frontend bela-frontend-https
 	bind *:443 ssl crt /etc/haproxy/certs/www.gunnerbel.tech.pem
 	http-request set-header X-Forwarded-Proto https
-	default_backend oreste-backend
+	default_backend bela-backend
 
-backend oreste-backend
+backend bela-backend
         balance roundrobin
         server 6180-web-01 98.80.11.37:80 check
         server 6180-web-02 52.91.49.196:80 check
